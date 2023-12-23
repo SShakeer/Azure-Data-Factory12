@@ -1,0 +1,74 @@
+DWH:
+--------
+1.Netezza, teradata, oracle
+2.structured data
+3.1980
+4.cannot process unstructured data 
+5.scalability
+6.proprietary file formats (only csv)
+7.expensive to store data (oracle 100TB)
+8.lack of support ML
+9.ACID support
+
+Datalake:(2010-2020)
+-------------------
+(Silver--->Bronze----->Gold 
+Example: bigdata (Hadoop)
+1.poor BI support
+2.no history
+3.complex setup
+4.less support for streaming work
+5.ACID transactions (DML)
+6.supoort for all types of data (Hive,pig (un),apache mahout for ML)
+
+
+
+Delta lake(lake house) : (2020- tilldate)
+---------------------
+1. ACID transactiavons support
+2. better performance
+3. good BI support (PowerBI)
+4. we can use diff file formats (parquet,avro,orc etc)
+5.history and versioning
+6.using delta lake we can process all types of data(stru,semi,unstructred data)
+
+
+-------------------
+File formats:
+------------
+1. Parquet:Columnlar format
+   
+   df=spark.read.format("csv").load("emp.csv")//10 sec
+   
+   It will create indexes and maintains the statisticks of each column in the table.
+--> we will use parquet in all the modules like Spark(databricks), ADLS,AWS,Hadoop
+-->while reading data it will provide good performance
+-->It will have block compression techniq
+source(100.csv) ----->ADLSGen2(parquet)------>databricks----->target
+df=spark.read.format("parquet").load("emp.parquet")
+
+2. Avro: we will use AVRO for the schema evaluation
+         changing schema(headers) dynamically.
+     
+       empno,ename,sal,comm
+       empno,ename,sal,comm,tax
+
+       it will also compress the data
+       
+
+   
+3. ORC: optimized row columlar format.
+        It is developed by FaceBook
+        Hadoop (Hive)
+        ORC and parquet both will give good performance while retriving the datta. It has bloom filters to find weather record is exist or not.
+select * from emp where deptno=10 and Dname='SALES';
+It will compress more than parquet.
+
+4. RC: row columlar format
+       reading faster but writind data is slow
+
+5. Sequence: we will use in Hadoop. it will store data in key value pairs in binary format. it will be good in writing than text or csv.
+
+
+ 
+6. CSV or TSV:row wise file formats. when ever your data is small and strucured or delimited by some chars then we will use.
