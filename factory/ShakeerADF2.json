@@ -1,0 +1,9 @@
+{
+	"name": "ShakeerADF2",
+	"location": "southindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "266128e6-c859-4c0b-a1a0-9927b36ed0be",
+		"tenantId": "61022000-1776-4c3a-b2c7-00ca679f7d6f"
+	}
+}
